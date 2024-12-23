@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.white-board {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: white;
+    padding: 20px;
+    margin: 50px;
+    border: solid 1px gainsboro;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.white-board .table-task {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.btns-task {
+    margin: 10px 0px 10px 10px;
+}
+
+.white-board table td {
+    margin: auto;
+    vertical-align: middle;
+}
+
+.table-group-divider {
+    color: gray;
+}
+
+.action-btns a {
+    font-size: 25px;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
