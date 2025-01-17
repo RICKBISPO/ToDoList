@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="img/todolist-ico.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script type="module" src="js/script.js" defer></script>
     <title>To-Do List | JS</title>
 </head>
 <body class="bg-light">
@@ -34,6 +34,7 @@
                         </tr>
                       </thead>
                       <tbody class="table-group-divider">
+                        <!-- TASKS -->
                       </tbody>
                 </table>
             </div>
@@ -42,7 +43,7 @@
     </main>
 
     <!-- Modal Create Task -->
-    <div class="modal fade" id="modalCreateTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCreateTaskLabel" aria-hidden="true">
+    <div class="modal fade form-modal" id="modalCreateTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalCreateTaskLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -51,21 +52,27 @@
             </div>
             <div class="modal-body">
                 <label for="create-task-tittle" class="form-label">Título</label>
-                <input class="form-control" name="tittle" type="text" id="create-task-tittle">
+                <input class="form-control focus-element" name="tittle" type="text" id="create-task-tittle">
                 
                 <label for="create-task-description" class="form-label">Descrição</label>
                 <textarea class="form-control" name="description" type="text" id="create-task-description"></textarea>
+
+                <label for="create-task-status" class="form-label">Status</label>
+                <select class="form-select" id="create-task-status">
+                  <option value="Em Andamento" selected>Em Andamento</option>
+                  <option value="Finalizada">Finalizada</option>
+                </select>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-              <button type="button" id="create-task-btn" class="btn btn-primary check-data">Enviar</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" id="create-task-btn" class="btn btn-primary btn-submit">Enviar</button>
             </div>
           </div>
         </div>
     </div>
 
     <!-- Modal Retrieve Task -->
-    <div class="modal fade" id="modalRetrieveTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalRetrieveTaskLabel" aria-hidden="true">
+    <div class="modal fade form-modal" id="modalRetrieveTask" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalRetrieveTaskLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -74,18 +81,18 @@
           </div>
           <div class="modal-body">
               <label for="retrieve-task-id" class="form-label">ID da Tarefa</label>
-              <input class="form-control" name="id" type="number" id="retrieve-task-id">
+              <input class="form-control focus-element" name="id" type="number" id="retrieve-task-id">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" id="retrieve-task-btn" class="btn btn-warning check-data" data-bs-dismiss="modal">Enviar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" id="retrieve-task-btn" class="btn btn-warning btn-submit" data-bs-dismiss="modal">Enviar</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Remove Task -->
-    <div class="modal action-modal fade" id="modalRemoveTask" tabindex="-1" aria-labelledby="modalRemoveTaskLabel" aria-hidden="true">
+    <div class="modal fade action-modal" id="modalRemoveTask" tabindex="-1" aria-labelledby="modalRemoveTaskLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -97,14 +104,14 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" id="remove-task-btn" class="btn btn-danger action-button" data-callback-function="removeTask" data-bs-dismiss="modal">Remover</button>
+            <button type="button" id="remove-task-btn" class="btn btn-danger btn-submit action-button" data-callback-function="removeTask" data-bs-dismiss="modal">Remover</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Update Task -->
-    <div class="modal action-modal fade" id="modalUpdateTask" tabindex="-1" aria-labelledby="modalUpdateTaskLabel" aria-hidden="true">
+    <div class="modal fade form-modal action-modal" id="modalUpdateTask" tabindex="-1" aria-labelledby="modalUpdateTaskLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -113,21 +120,21 @@
           </div>
           <div class="modal-body">
             <label for="update-task-tittle" class="form-label">Título</label>
-            <input class="form-control" name="tittle" type="text" id="update-task-tittle">
+            <input class="form-control focus-element" name="tittle" type="text" id="update-task-tittle">
             
             <label for="update-task-description" class="form-label">Descrição</label>
             <textarea class="form-control" name="description" type="text" id="update-task-description"></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" id="update-task-btn" class="btn btn-warning action-button" data-callback-function="updateTask" data-bs-dismiss="modal">Enviar</button>
+            <button type="button" id="update-task-btn" class="btn btn-warning btn-submit action-button" data-callback-function="updateTask">Enviar</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Finish Task -->
-    <div class="modal action-modal fade" id="modalFinishTask" tabindex="-1" aria-labelledby="modalFinishTaskLabel" aria-hidden="true">
+    <div class="modal fade action-modal" id="modalFinishTask" tabindex="-1" aria-labelledby="modalFinishTaskLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -139,7 +146,25 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <button type="button" id="finish-task-btn" class="btn btn-success action-button" data-callback-function="finishTask" data-bs-dismiss="modal">Finalizar</button>
+            <button type="button" id="finish-task-btn" class="btn btn-success btn-submit action-button" data-callback-function="finishTask" data-bs-dismiss="modal">Finalizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal History Task -->
+    <div class="modal fade modal-history-task" id="modalHistoryTask" tabindex="-1" aria-labelledby="modalHistoryTaskLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalHistoryTaskLabel">Histórico da Tarefa</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body modal-body-history-task">
+            <!-- TASKS -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
           </div>
         </div>
       </div>
